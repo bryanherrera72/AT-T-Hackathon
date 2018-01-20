@@ -4,6 +4,7 @@ import 'tracking/build/tracking';
 import 'tracking';
 // node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
+import {Subject} from 'rxjs/Subject';
 
 import {Howl, Howler} from 'howler';
 
@@ -27,11 +28,14 @@ export class GameModeComponent implements AfterViewInit {
     hitBoxImage = 'http://www.freeiconspng.com/uploads/circle-png-7.png';
     hitBoxImages = ['CircleTeal.png', 'CircleRed.png', 'CircleGreen.png']
 
+    cursorXCoordinateSubject = new Subject();
+    cursorYCoordinateSubject = new Subject();
+
     sounds:Howl[];
     @ViewChild('myVideo') hardwareVideo;
 
     constructor() {}
-    startVideo() {
+    startVideo(xCoordinateSubject, yCoordinateSubject) {
 
 
         const video = this.hardwareVideo.nativeElement;
@@ -65,8 +69,10 @@ export class GameModeComponent implements AfterViewInit {
             if (event.data.length === 0) {
                 // No colors were detected in this frame.
             } else {
-                event.data.forEach(function(rect) {
+                event.data.forEach( (rect) => {
                     console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+                    xCoordinateSubject.next(rect.x);
+                    yCoordinateSubject.next(rect.y);
                 });
             }
         });
@@ -82,7 +88,18 @@ export class GameModeComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.startVideo();
+        this.startVideo(this.cursorXCoordinateSubject, this.cursorYCoordinateSubject);
+        this.cursorXCoordinateSubject
+        .subscribe(
+          (data) => {
+            console.log('x coordinates: ' + data);
+          }
+          this.cursorYCoordinateSubject
+          .subscribe(
+            (data) => {
+              console.log('y coordinates: ' + data);
+            }
+        );
     }
 
     playSoundZero(){
