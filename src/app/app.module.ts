@@ -10,6 +10,9 @@ import { GameModeComponent } from './game-mode/game-mode.component';
 import {TestComponent} from './game-mode/test/test.component';
 import { OptionMenuComponent } from './option-menu/option-menu.component';
 
+// Directives
+import {AnimateHitObjectDirective} from './game-mode/animate-hit-object.directive';
+
 const appRoutes: Routes = [
     {path: '', component: MainMenuComponent, pathMatch: 'full'},
     {path: 'Play', component: GameModeComponent, pathMatch: 'full'},
