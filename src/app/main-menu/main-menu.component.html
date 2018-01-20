@@ -2,7 +2,7 @@
   <h1 class="text-center title">{{title}}</h1>
   <div class="col-md-3"></div>
   <div class="col-md-6 menuContainer">
-    <ul class="list-group" *ngFor="let menuItem of menuItems">
+    <ul class="list-group" *ngFor="let menuItem of menuItems; let count = index">
       <li class="list-group-item text-center menuItem">{{menuItem}}</li>
     </ul>
   </div>

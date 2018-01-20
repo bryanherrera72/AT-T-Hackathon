@@ -1,15 +1,20 @@
 .hit-box{
-    width: 30%;
+    width: 35%;
+    margin-left: 30%;
 }
 
 .img {
-    float: left;
+
 }
 
-#img-right{
-    margin-left: 40%;
-}
-
-.hit-box-container{
+.hit-box-upper{
     margin: auto;
+    margin-top: -70%;
+}
+.hit-box-lower{
+    margin: -25% 0% 0% 0%;
+}
+
+.hit-box-left-lower {
+
 }

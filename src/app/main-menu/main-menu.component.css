@@ -6,3 +6,11 @@
     margin: 0px 0px 30px 0px;
 }
 
+.container {
+    background: url("../../assets/background_main/MainPage.png") no-repeat center center fixed;
+    size: 1000px;
+    height: 1000px;
+    width: 1000px;
+
+}
+

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-main-menu',
-  templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.css']
+  selector: 'app-page-not-found',
+  templateUrl: './page-not-found.component.html',
+  styleUrls: ['./page-not-found.component.css']
 })
-export class MainMenuComponent implements OnInit {
+export class PageNotFoundComponent implements OnInit {
   title = 'Beat Bop';
   menuItems = ['Play', 'Create Song','User Settings'];
   routes = ['test', 'test', 'test'];

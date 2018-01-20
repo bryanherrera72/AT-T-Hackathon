@@ -1,16 +1,16 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
-import 'tracking';
-//node_modules/tracking/build/tracking.js    
+import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+// node_modules/tracking/build/tracking.js
 import 'tracking/build/tracking';
-//node_modules/tracking/build/data/face.js
+import 'tracking';
+// node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
 
 interface Navigator {
   getUserMedia(
-      options: { video?: boolean; audio?: boolean; }, 
-      success: (stream: any) => void, 
+      options: { video?: boolean; audio?: boolean; },
+      success: (stream: any) => void,
       error?: (error: string) => void
-      ) : void;
+      ): void;
 }
 
 @Component({
@@ -18,35 +18,29 @@ interface Navigator {
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent implements OnInit {
-  window:any; 
-  tracking:any;
+export class TestComponent implements AfterViewInit {
+  window: any;
+  tracking: any;
 
   @ViewChild('myVideo') hardwareVideo;
 
-  constructor() {
-    
-  }
-
-  ngOnInit() {
-
-  }
-
-
-  startVideo(){
-    let video = this.hardwareVideo.nativeElement;
+  constructor() {}
+  startVideo() {
+    const video = this.hardwareVideo.nativeElement;
 
     var n = <any>navigator;
 
     n.getUserMedia = ( n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia  || n.msGetUserMedia );
-    n.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+    n.mediaDevices.getUserMedia({ video: true }).then(
+        (stream) => {
       console.log("called");
         video.src = window.URL.createObjectURL(stream);
         video.play();
-    });
-  
+    },
+        (err) => {
+          console.log(err);
+        });
     var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
-
     colors.on('track', function(event) {
       if (event.data.length === 0) {
         // No colors were detected in this frame.
@@ -59,6 +53,10 @@ export class TestComponent implements OnInit {
     });
 
     tracking.track('#myVideo', colors);
+  }
+
+  ngAfterViewInit() {
+      this.startVideo();
   }
 
 }
