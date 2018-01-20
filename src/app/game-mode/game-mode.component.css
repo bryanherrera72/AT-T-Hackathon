@@ -4,6 +4,8 @@
 
 .img {
     float: left;
+    margin-top: 0px;
+    margin: auto;
 }
 
 #img-right{
@@ -11,5 +13,5 @@
 }
 
 .hit-box-container{
-    margin: auto;
+    margin-top: -800px;
 }

@@ -5,15 +5,16 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
-
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { GameModeComponent } from './game-mode/game-mode.component';
 
 import { TestComponent } from './test/test.component';
 const appRoutes: Routes = [
     {path: '', component: MainMenuComponent, pathMatch: 'full'},
-    {path: 'Play', component: GameModeComponent, pathMatch: 'full'}
-    //{path: '**', redirectTo: 'Page-Not-Found'}
-]
+    {path: 'Play', component: GameModeComponent, pathMatch: 'full'},
+    {path: 'Page-Not-Found', component: PageNotFoundComponent},
+    {path: '**', redirectTo: 'Page-Not-Found'}
+];
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ const appRoutes: Routes = [
     LoginComponent,
     MainMenuComponent,
     GameModeComponent,
-    TestComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
