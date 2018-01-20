@@ -2,9 +2,11 @@
     <h1 class="text-center title">{{title}}</h1>
     <div class="col-md-3"></div>
     <div class="col-md-6 menuContainer">
-      <ul class="list-group" *ngFor="let menuItem of menuItems; let count = index">
-        <a routerLink='{{routes[count]}}' (click)="backtrack_highlighted()"><li class="list-group-item text-center menuItem" src="https://placehold.it/50">{{menuItem}}</li></a>
-      </ul>
+      <<div class="btn-group-vertical">
+          <button type="button" class="btn btn-primary">Apple</button>
+          <button type="button" class="btn btn-primary">Samsung</button>
+          <button type="button" class="btn btn-primary">Sony</button>
+        </div>
     </div>
     <div class="col-md-3"></div>
   </div>
