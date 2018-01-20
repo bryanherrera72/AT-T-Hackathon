@@ -32,7 +32,7 @@ export class GameModeComponent implements AfterViewInit {
 
     constructor() {}
     startVideo() {
-        
+
 
         const video = this.hardwareVideo.nativeElement;
 
@@ -48,7 +48,19 @@ export class GameModeComponent implements AfterViewInit {
             (err) => {
                 console.log(err);
             });
-        var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+
+        // Custom color tracking for RGB(60, 0, 160) (+/- 50 for error)
+        tracking.ColorTracker.registerColor('purple', function(r, g, b) {
+            if (r >= 10 && r <= 110  && g <= 50 && b >= 110 && b <= 210) {
+                return true;
+            }
+            return false;
+            });
+
+        // Change the minimum dimension for color tracking to 1
+        tracking.ColorTracker.prototype.minDimension = 1;
+
+        var colors = new tracking.ColorTracker(['purple']);
         colors.on('track', function(event) {
             if (event.data.length === 0) {
                 // No colors were detected in this frame.
@@ -63,7 +75,7 @@ export class GameModeComponent implements AfterViewInit {
     }
 
     ngOnInit(){
-        this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}), 
+        this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}),
                       new Howl({src:'../../assets/audio/Famoush.wav'}),
                       new Howl({src:'../../assets/audio/Famoush.wav'}),
                       new Howl({src:'../../assets/audio/Famoush.wav'})];
@@ -85,7 +97,7 @@ export class GameModeComponent implements AfterViewInit {
     playSoundThree(){
         this.sounds[3].play();
     }
-    
+
     // Side as in left or right side. Region as in upper left, lower right.
     generateFallingObject(side, region) {
 
