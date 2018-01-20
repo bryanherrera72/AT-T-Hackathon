@@ -1,17 +1,19 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
-// node_modules/tracking/build/tracking.js
-import 'tracking/build/tracking';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import 'tracking';
-// node_modules/tracking/build/data/face.js
+//node_modules/tracking/build/tracking.js    
+import 'tracking/build/tracking';
+//node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
-import 'howler';
+
+import {Howler} from 'howler';
+
 
 interface Navigator {
   getUserMedia(
-      options: { video?: boolean; audio?: boolean; },
-      success: (stream: any) => void,
+      options: { video?: boolean; audio?: boolean; }, 
+      success: (stream: any) => void, 
       error?: (error: string) => void
-      ): void;
+      ) : void;
 }
 
 @Component({
@@ -19,34 +21,36 @@ interface Navigator {
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent implements AfterViewInit {
-  window: any;
-  tracking: any;
-
+export class TestComponent implements OnInit {
+  window:any; 
+  tracking:any;
+  
   thingy:Howl;
-
+  
   @ViewChild('myVideo') hardwareVideo;
 
-  constructor() {}
-  startVideo() {
-    this.thingy = new Howl({
-      src:['../../assets/audio/Famoush.wav']
-    });
-    const video = this.hardwareVideo.nativeElement;
+  constructor() {
+    
+  }
+
+  ngOnInit() {
+  }
+
+
+  startVideo(){
+    let video = this.hardwareVideo.nativeElement;
 
     var n = <any>navigator;
 
     n.getUserMedia = ( n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia  || n.msGetUserMedia );
-    n.mediaDevices.getUserMedia({ video: true }).then(
-        (stream) => {
+    n.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
       console.log("called");
         video.src = window.URL.createObjectURL(stream);
         video.play();
-    },
-        (err) => {
-          console.log(err);
-        });
+    });
+  
     var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+
     colors.on('track', function(event) {
       if (event.data.length === 0) {
         // No colors were detected in this frame.
@@ -59,14 +63,10 @@ export class TestComponent implements AfterViewInit {
     });
 
     tracking.track('#myVideo', colors);
+
+
   }
 
-  ngAfterViewInit() {
-      this.startVideo();
-  }
-
-  playSound(){
-    this.thingy.play();
-  }
+  
 
 }

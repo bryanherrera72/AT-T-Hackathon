@@ -25,10 +25,15 @@ export class GameModeComponent implements AfterViewInit {
     hitBoxImage = 'http://www.freeiconspng.com/uploads/circle-png-7.png';
     hitBoxImages = ['CircleTeal.png', 'CircleRed.png', 'CircleGreen.png']
 
+    thingy:Howl;
     @ViewChild('myVideo') hardwareVideo;
 
     constructor() {}
     startVideo() {
+        this.thingy = new Howl({
+            src:['../../assets/audio/Famoush.wav']
+          });
+
         const video = this.hardwareVideo.nativeElement;
 
         var n = <any>navigator;
@@ -59,6 +64,10 @@ export class GameModeComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.startVideo();
+    }
+
+    playSound(){
+        this.thingy.play();
     }
 
 }
