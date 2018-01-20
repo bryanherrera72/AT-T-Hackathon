@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
 // node_modules/tracking/build/tracking.js
 import 'tracking/build/tracking';
 import 'tracking';
@@ -59,6 +59,11 @@ export class GameModeComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.startVideo();
+    }
+
+    // Side as in left or right side. Region as in upper left, lower right.
+    generateFallingObject(side, region) {
+
     }
 
 }
