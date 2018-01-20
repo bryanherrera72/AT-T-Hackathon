@@ -7,10 +7,10 @@
 }
 
 .container {
-    background-image: url("../../assets/background_main/cam-adams-235137.jpg");
-    background-size: 1000px;
-    background-repeat: no-repeat;
+    background: url("../../assets/background_main/MainPage.png") no-repeat center center fixed;
+    size: 1000px;
     height: 1000px;
     width: 1000px;
+
 }
 
