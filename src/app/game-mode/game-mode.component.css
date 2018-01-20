@@ -25,3 +25,7 @@ video {
 .hit-box-right-lower {
     margin-left: 55% !important;
 }
+
+.hit-indicator {
+    width: 20%;
+}

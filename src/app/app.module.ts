@@ -8,10 +8,15 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { GameModeComponent } from './game-mode/game-mode.component';
 import {TestComponent} from './game-mode/test/test.component';
+import { OptionMenuComponent } from './option-menu/option-menu.component';
+
+// Directives
+import {AnimateHitObjectDirective} from './game-mode/animate-hit-object.directive';
 
 const appRoutes: Routes = [
     {path: '', component: MainMenuComponent, pathMatch: 'full'},
     {path: 'Play', component: GameModeComponent, pathMatch: 'full'},
+    {path: 'Options', component: OptionMenuComponent, pathMatch: 'full'},
     {path: 'Page-Not-Found', component: PageNotFoundComponent},
     {path: '**', redirectTo: 'Page-Not-Found'}
 ];
@@ -23,7 +28,8 @@ const appRoutes: Routes = [
     MainMenuComponent,
     GameModeComponent,
     PageNotFoundComponent,
-    TestComponent
+    TestComponent,
+    OptionMenuComponent
   ],
   imports: [
     BrowserModule,

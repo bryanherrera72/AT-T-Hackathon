@@ -1,14 +1,15 @@
-import { Component, OnInit, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Renderer2, ElementRef } from '@angular/core';
 // node_modules/tracking/build/tracking.js
 import 'tracking/build/tracking';
 import 'tracking';
 // node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
+import {Subject} from 'rxjs/Subject';
 
 
 import {Howl, Howler} from 'howler';
 import { Point } from '../models/point.model';
-import { Subject } from 'rxjs/Subject';
+
 
 interface Navigator {
     getUserMedia(
@@ -63,7 +64,7 @@ export class GameModeComponent implements AfterViewInit {
         n.getUserMedia = ( n.getUserMedia || n.webkitGetUserMedia || n.mozGetUserMedia  || n.msGetUserMedia );
         n.mediaDevices.getUserMedia({ video: true }).then(
             (stream) => {
-                console.log("called");
+                // console.log("called");
                 video.src = window.URL.createObjectURL(stream);
                 video.play();
             },
@@ -144,6 +145,17 @@ export class GameModeComponent implements AfterViewInit {
 
     ngAfterViewInit() {
         this.startVideo();
+        // this.cursorXCoordinateSubject
+        // .subscribe(
+        //   (data) => {
+        //     console.log('x coordinates: ' + data);
+        //   }
+        //   this.cursorYCoordinateSubject
+        //   .subscribe(
+        //     (data) => {
+        //       console.log('y coordinates: ' + data);
+        //     }
+        // );
     }
 
     playSoundZero(){
@@ -188,8 +200,41 @@ export class GameModeComponent implements AfterViewInit {
         return this.canCheck;
     }
     // Side as in left or right side. Region as in upper left, lower right.
-    generateFallingObject(side, region) {
-
+    generateFallingObject() {
+    //     console.log('Generating');
+    //     const myVar = 100 + 'px';
+    //     const imageItem = this.renderer.createElement('img');
+    //     this.renderer.addClass(imageItem, 'hit-indicator');
+    //     this.renderer.setProperty(imageItem, 'src',
+    //         'https://upload.wikimedia.org/wikipedia/commons/' +
+    //         'thumb/4/4a/Sphere_wireframe_10deg_10r.svg/2000px-Sphere_wireframe_10deg_10r.svg.png');
+    //     this.renderer.setStyle(imageItem, 'width', '15%');
+    //     this.renderer.setStyle(imageItem, 'height', '15%');
+    //     this.renderer.setStyle(imageItem, 'position', 'absolute');
+    //     this.renderer.setStyle(imageItem, 'left', '150px');
+    //     this.renderer.setStyle(imageItem, 'top', myVar);y
+    //     this.renderer.setAttribute(imageItem, 'appAnimateObject', '');
+    //     this.renderer.setAttribute(imageItem, 'appAnimateObject', '');
+    //     // this.renderer.set
+    //     console.log(this.elemRef.nativeElement);
+    //     this.renderer.appendChild(this.elemRef.nativeElement.querySelector('div'), imageItem);
+    //     console.log(imageItem);
+    //     this.changeXPosition(imageItem);
+    // }
+    // changeXPosition(image) {
+    //     console.log(this.elemRef.nativeElement.querySelector);
+    //     var counter = 0;
+    //         const myInterval = setInterval(() => {
+    //             const xCoordinate = counter + 'px';
+    //             this.renderer.setStyle(image, 'top', xCoordinate);
+    //             // console.log('Waiting ' + xCoordinate);
+    //             counter = counter + 20;
+    //             if (counter === 500) {
+    //                 // console.log('change image color');
+    //             }
+    //             if (counter >= 700) {
+    //                 clearInterval(myInterval);
+    //             }
+    //         }, 50);
     }
-
 }

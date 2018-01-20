@@ -10,7 +10,7 @@ import {Howl, Howler} from 'howler';
 export class MainMenuComponent implements OnInit {
   title = 'Beat Bop';
   menuItems = ['Play', 'Create Song','User Settings'];
-  routes = ['Play', 'test', 'test'];
+  routes = ['Options', 'Play', 'test'];
   sounds:Howl[];
   constructor() { }
 
