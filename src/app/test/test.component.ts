@@ -1,7 +1,7 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import 'tracking';
 //node_modules/tracking/build/tracking.js    
-//import 'tracking/build/tracking';
+import 'tracking/build/tracking';
 //node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
 
@@ -45,7 +45,7 @@ export class TestComponent implements OnInit {
         video.play();
     });
   
-    var colors = new this.tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+    var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 
     colors.on('track', function(event) {
       if (event.data.length === 0) {
@@ -57,8 +57,7 @@ export class TestComponent implements OnInit {
       }
     });
 
-    this.tracking.track('#myVideo', colors);
+    tracking.track('#myVideo', colors);
   }
-  ngAfterViewInit()
 
 }
