@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class MainMenuComponent implements OnInit {
   title = 'Beat Bop';
   menuItems = ['Play', 'Create Song','User Settings'];
-  routes = ['test', 'test', 'test'];
+  routes = ['Play', 'test', 'test'];
   constructor() { }
 
   ngOnInit() {
