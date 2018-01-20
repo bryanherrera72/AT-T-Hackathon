@@ -5,6 +5,7 @@ import 'tracking';
 // node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
 
+
 import {Howl, Howler} from 'howler';
 
 interface Navigator {
@@ -23,6 +24,9 @@ interface Navigator {
 export class GameModeComponent implements AfterViewInit {
     window: any;
     tracking: any;
+
+    @ViewChild('upperLeft') upperLeftBox;
+
     cdnEndpoint = 'http://d33k0w5tn3c49w.cloudfront.net/'
     hitBoxImage = 'http://www.freeiconspng.com/uploads/circle-png-7.png';
     hitBoxImages = ['CircleTeal.png', 'CircleRed.png', 'CircleGreen.png']
@@ -31,6 +35,7 @@ export class GameModeComponent implements AfterViewInit {
     @ViewChild('myVideo') hardwareVideo;
 
     constructor() {}
+
     startVideo() {
         
 
@@ -48,7 +53,7 @@ export class GameModeComponent implements AfterViewInit {
             (err) => {
                 console.log(err);
             });
-        var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+        var colors = new tracking.ColorTracker(['magenta',  'yellow']);
         colors.on('track', function(event) {
             if (event.data.length === 0) {
                 // No colors were detected in this frame.
@@ -64,13 +69,14 @@ export class GameModeComponent implements AfterViewInit {
 
     ngOnInit(){
         this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}), 
-                      new Howl({src:'../../assets/audio/Famoush.wav'}),
-                      new Howl({src:'../../assets/audio/Famoush.wav'}),
-                      new Howl({src:'../../assets/audio/Famoush.wav'})];
+                      new Howl({src:'../../assets/audio/Hiagogo.wav'}),
+                      new Howl({src:'../../assets/audio/LowMedHit.wav'}),
+                      new Howl({src:'../../assets/audio/LowHit.wav'})];
     }
 
     ngAfterViewInit() {
         this.startVideo();
+        
     }
 
     playSoundZero(){
