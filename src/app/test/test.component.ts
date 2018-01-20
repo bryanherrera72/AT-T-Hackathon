@@ -53,6 +53,7 @@ export class TestComponent implements OnInit {
       } else {
         event.data.forEach(function(rect) {
           console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+          //emit some kind of event here.
         });
       }
     });
