@@ -1,6 +1,7 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
+import 'tracking';
 //node_modules/tracking/build/tracking.js    
-import 'tracking/build/tracking';
+//import 'tracking/build/tracking';
 //node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
 
