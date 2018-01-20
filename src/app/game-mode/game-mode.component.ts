@@ -5,6 +5,8 @@ import 'tracking';
 // node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
 
+import {Howl, Howler} from 'howler';
+
 interface Navigator {
     getUserMedia(
         options: { video?: boolean; audio?: boolean; },
@@ -25,14 +27,12 @@ export class GameModeComponent implements AfterViewInit {
     hitBoxImage = 'http://www.freeiconspng.com/uploads/circle-png-7.png';
     hitBoxImages = ['CircleTeal.png', 'CircleRed.png', 'CircleGreen.png']
 
-    thingy:Howl;
+    sounds:Howl[];
     @ViewChild('myVideo') hardwareVideo;
 
     constructor() {}
     startVideo() {
-        this.thingy = new Howl({
-            src:['../../assets/audio/Famoush.wav']
-          });
+        
 
         const video = this.hardwareVideo.nativeElement;
 
@@ -62,13 +62,30 @@ export class GameModeComponent implements AfterViewInit {
         tracking.track('#myVideo', colors);
     }
 
+    ngOnInit(){
+        this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}), 
+                      new Howl({src:'../../assets/audio/Famoush.wav'}),
+                      new Howl({src:'../../assets/audio/Famoush.wav'}),
+                      new Howl({src:'../../assets/audio/Famoush.wav'})];
+    }
+
     ngAfterViewInit() {
         this.startVideo();
     }
 
-    playSound(){
-        this.thingy.play();
+    playSoundZero(){
+        this.sounds[0].play();
     }
+    playSoundOne(){
+        this.sounds[1].play();
+    }
+    playSoundTwo(){
+        this.sounds[2].play();
+    }
+    playSoundThree(){
+        this.sounds[3].play();
+    }
+    
     // Side as in left or right side. Region as in upper left, lower right.
     generateFallingObject(side, region) {
 
