@@ -1,0 +1,15 @@
+.hit-box{
+    width: 30%;
+}
+
+.img {
+    float: left;
+}
+
+#img-right{
+    margin-left: 40%;
+}
+
+.hit-box-container{
+    margin: auto;
+}

@@ -5,8 +5,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import { GameModeComponent } from './game-mode/game-mode.component';
 const appRoutes: Routes = [
-    {path: '', component: MainMenuComponent, pathMatch: 'full'}
+    {path: '', component: MainMenuComponent, pathMatch: 'full'},
+    {path: 'Play', component: GameModeComponent, pathMatch: 'full'}
     //{path: '**', redirectTo: 'Page-Not-Found'}
 ]
 
@@ -14,7 +16,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    GameModeComponent
   ],
   imports: [
     BrowserModule,
