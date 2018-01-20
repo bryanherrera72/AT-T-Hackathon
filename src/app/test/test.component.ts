@@ -45,7 +45,7 @@ export class TestComponent implements OnInit {
         video.play();
     });
   
-    var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+    var colors = new this.tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
 
     colors.on('track', function(event) {
       if (event.data.length === 0) {
@@ -57,10 +57,8 @@ export class TestComponent implements OnInit {
       }
     });
 
-    tracking.track('#myVideo', colors);
+    this.tracking.track('#myVideo', colors);
   }
-  ngAfterViewInit(){
-    
+  ngAfterViewInit()
 
-  }
 }
