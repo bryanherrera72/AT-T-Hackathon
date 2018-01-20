@@ -7,8 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import { GameModeComponent } from './game-mode/game-mode.component';
+import {TestComponent} from './game-mode/test/test.component';
 
-import { TestComponent } from './test/test.component';
 const appRoutes: Routes = [
     {path: '', component: MainMenuComponent, pathMatch: 'full'},
     {path: 'Play', component: GameModeComponent, pathMatch: 'full'},
@@ -22,7 +22,8 @@ const appRoutes: Routes = [
     LoginComponent,
     MainMenuComponent,
     GameModeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+      TestComponent
   ],
   imports: [
     BrowserModule,
