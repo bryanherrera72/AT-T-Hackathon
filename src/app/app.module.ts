@@ -26,7 +26,11 @@ const appRoutes: Routes = [
     MainMenuComponent,
     GameModeComponent,
     PageNotFoundComponent,
+<<<<<<< HEAD
     TestComponent,
+=======
+    TestComponent
+>>>>>>> 4b303f1d4fe4b49a8499621b35cde4dbfec62764
   ],
   imports: [
     BrowserModule,

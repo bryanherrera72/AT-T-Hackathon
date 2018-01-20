@@ -6,7 +6,10 @@
 .img {
 
 }
-
+video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
 .hit-box-upper{
     margin: auto;
     margin-top: -65%;

@@ -4,8 +4,14 @@ import 'tracking/build/tracking';
 import 'tracking';
 // node_modules/tracking/build/data/face.js
 import 'tracking/build/data/face';
+<<<<<<< HEAD
 import {AnimateHitObjectDirective} from './animate-hit-object.directive';
 import {Subject} from 'rxjs/Subject';
+=======
+import {Subject} from 'rxjs/Subject';
+
+import {Howl, Howler} from 'howler';
+>>>>>>> 4b303f1d4fe4b49a8499621b35cde4dbfec62764
 
 interface Navigator {
     getUserMedia(
@@ -30,12 +36,23 @@ export class GameModeComponent implements AfterViewInit {
     userCursorX = 0;
     userCursorXSubject = new Subject();
 
+    cursorXCoordinateSubject = new Subject();
+    cursorYCoordinateSubject = new Subject();
+
+    sounds:Howl[];
     @ViewChild('myVideo') hardwareVideo;
     // @ViewChild('');
 
+<<<<<<< HEAD
     constructor(private renderer: Renderer2,
                 private elemRef: ElementRef) {}
     startVideo(xCoordinate) {
+=======
+    constructor() {}
+    startVideo(xCoordinateSubject, yCoordinateSubject) {
+
+
+>>>>>>> 4b303f1d4fe4b49a8499621b35cde4dbfec62764
         const video = this.hardwareVideo.nativeElement;
 
         var n = <any>navigator;
@@ -50,15 +67,34 @@ export class GameModeComponent implements AfterViewInit {
             (err) => {
                 console.log(err);
             });
-        var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+
+        // Custom color tracking for RGB(60, 0, 160) (+/- 50 for error)
+        tracking.ColorTracker.registerColor('purple', function(r, g, b) {
+            if (r >= 10 && r <= 110  && g <= 50 && b >= 110 && b <= 210) {
+                return true;
+            }
+            return false;
+            });
+
+        // Change the minimum dimension for color tracking to 1
+        tracking.ColorTracker.prototype.minDimension = 1;
+
+        var colors = new tracking.ColorTracker(['purple']);
         colors.on('track', function(event) {
             if (event.data.length === 0) {
                 // No colors were detected in this frame.
             } else {
+<<<<<<< HEAD
                 event.data.forEach((rect) => {
                     console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
                     xCoordinate = rect.x;
                     console.log(xCoordinate);
+=======
+                event.data.forEach( (rect) => {
+                    console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+                    xCoordinateSubject.next(rect.x);
+                    yCoordinateSubject.next(rect.y);
+>>>>>>> 4b303f1d4fe4b49a8499621b35cde4dbfec62764
                 });
             }
         });
@@ -66,10 +102,45 @@ export class GameModeComponent implements AfterViewInit {
         tracking.track('#myVideo', colors);
     }
 
+    ngOnInit(){
+        this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}),
+                      new Howl({src:'../../assets/audio/Famoush.wav'}),
+                      new Howl({src:'../../assets/audio/Famoush.wav'}),
+                      new Howl({src:'../../assets/audio/Famoush.wav'})];
+    }
+
     ngAfterViewInit() {
+<<<<<<< HEAD
         this.startVideo(this.userCursorX);
         // setInterval(this.generateFallingObject(), 1000);
         // this.generateFallingObject();
+=======
+        this.startVideo(this.cursorXCoordinateSubject, this.cursorYCoordinateSubject);
+        this.cursorXCoordinateSubject
+        .subscribe(
+          (data) => {
+            console.log('x coordinates: ' + data);
+          }
+          this.cursorYCoordinateSubject
+          .subscribe(
+            (data) => {
+              console.log('y coordinates: ' + data);
+            }
+        );
+    }
+
+    playSoundZero(){
+        this.sounds[0].play();
+    }
+    playSoundOne(){
+        this.sounds[1].play();
+    }
+    playSoundTwo(){
+        this.sounds[2].play();
+    }
+    playSoundThree(){
+        this.sounds[3].play();
+>>>>>>> 4b303f1d4fe4b49a8499621b35cde4dbfec62764
     }
 
     // Side as in left or right side. Region as in upper left, lower right.
