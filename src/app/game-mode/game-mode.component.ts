@@ -105,33 +105,29 @@ export class GameModeComponent implements AfterViewInit {
                       new Howl({src:'../../assets/audio/LowHit.wav'})];
         
         this.upperLBoxBound = [new Point(this.upperLeftBox.nativeElement.x, this.upperLeftBox.nativeElement.y),
-            new Point(this.upperLeftBox.nativeElement.x + this.upperLeftBox.nativeElement.width, this.upperLeftBox.nativeElement.y),
-            new Point(this.upperLeftBox.nativeElement.x,this.upperLeftBox.nativeElement.y + this.upperLeftBox.nativeElement.height),
-            new Point(this.upperLeftBox.nativeElement.x + this.upperLeftBox.nativeElement.width,this.upperLeftBox.nativeElement.y + this.upperLeftBox.nativeElement.height)
+            new Point((this.upperLeftBox.nativeElement.x + this.upperLeftBox.nativeElement.width), this.upperLeftBox.nativeElement.y),
+            new Point(this.upperLeftBox.nativeElement.x,(this.upperLeftBox.nativeElement.y + this.upperLeftBox.nativeElement.width)),
+            new Point((this.upperLeftBox.nativeElement.x + this.upperLeftBox.nativeElement.width),(this.upperLeftBox.nativeElement.y + this.upperLeftBox.nativeElement.width))
         ];
         this.upperRBoxBound =  [new Point(this.upperRightBox.nativeElement.x, this.upperRightBox.nativeElement.y),
-            new Point(this.upperRightBox.nativeElement.x + this.upperRightBox.nativeElement.width, this.upperRightBox.nativeElement.y),
-            new Point(this.upperRightBox.nativeElement.x,this.upperRightBox.nativeElement.y + this.upperRightBox.nativeElement.height),
-            new Point(this.upperRightBox.nativeElement.x + this.upperRightBox.nativeElement.width,this.upperRightBox.nativeElement.y + this.upperRightBox.nativeElement.height)
+            new Point((this.upperRightBox.nativeElement.x + this.upperRightBox.nativeElement.width), this.upperRightBox.nativeElement.y),
+            new Point(this.upperRightBox.nativeElement.x,(this.upperRightBox.nativeElement.y + this.upperRightBox.nativeElement.width)),
+            new Point((this.upperRightBox.nativeElement.x + this.upperRightBox.nativeElement.width),(this.upperRightBox.nativeElement.y + this.upperRightBox.nativeElement.width))
         ];
         this.lowerLBoxBound =  [new Point(this.lowerLeftBox.nativeElement.x, this.lowerLeftBox.nativeElement.y),
-            new Point(this.lowerLeftBox.nativeElement.x + this.lowerLeftBox.nativeElement.width, this.lowerLeftBox.nativeElement.y),
-            new Point(this.lowerLeftBox.nativeElement.x,this.lowerLeftBox.nativeElement.y + this.lowerLeftBox.nativeElement.height),
-            new Point(this.lowerLeftBox.nativeElement.x + this.lowerLeftBox.nativeElement.width,this.lowerLeftBox.nativeElement.y + this.lowerLeftBox.nativeElement.height)
+            new Point((this.lowerLeftBox.nativeElement.x + this.lowerLeftBox.nativeElement.width), this.lowerLeftBox.nativeElement.y),
+            new Point(this.lowerLeftBox.nativeElement.x,(this.lowerLeftBox.nativeElement.y + this.lowerLeftBox.nativeElement.width)),
+            new Point((this.lowerLeftBox.nativeElement.x + this.lowerLeftBox.nativeElement.width),(this.lowerLeftBox.nativeElement.y + this.lowerLeftBox.nativeElement.width))
         ];
         this.lowerRBoxBound =  [new Point(this.lowerRightBox.nativeElement.x, this.lowerRightBox.nativeElement.y),
-            new Point(this.lowerRightBox.nativeElement.x + this.lowerRightBox.nativeElement.width, this.lowerRightBox.nativeElement.y),
-            new Point(this.lowerRightBox.nativeElement.x,this.lowerRightBox.nativeElement.y + this.lowerRightBox.nativeElement.height),
-            new Point(this.lowerRightBox.nativeElement.x + this.lowerRightBox.nativeElement.width,this.lowerRightBox.nativeElement.y + this.lowerRightBox.nativeElement.height)
+            new Point((this.lowerRightBox.nativeElement.x + this.lowerRightBox.nativeElement.width), this.lowerRightBox.nativeElement.y),
+            new Point(this.lowerRightBox.nativeElement.x,(this.lowerRightBox.nativeElement.y + this.lowerRightBox.nativeElement.width)),
+            new Point((this.lowerRightBox.nativeElement.x + this.lowerRightBox.nativeElement.width),(this.lowerRightBox.nativeElement.y + this.lowerRightBox.nativeElement.width))
         ];
         
-        
-
-        
-
         this.bounds = [this.upperLBoxBound, this.upperRBoxBound, this.lowerLBoxBound, this.lowerRBoxBound];
-        for(let i = 0; i < this.bounds.length; i++){
-            console.log(this.bounds[i]);
+        for(let i = 0; i < this.bounds.length; i ++){
+           console.log(this.bounds[i]);
         }
 
         this.collisionDetection.subscribe(
@@ -178,10 +174,10 @@ export class GameModeComponent implements AfterViewInit {
             console.log("value: " + this.bounds[0][0].y)
             
             for(let i = 0; i < this.bounds.length; i++){
-                    
-                this.playSound(i);
+                if(point.x > this.bounds[i][0].x && point.x < this.bounds[i][1].x && point.y < this.bounds[i][2].y && point.y > this.bounds[i][0].y){
+                    this.playSound(i);
+                }
                 
-                    // console.log
                 }
             }
         
@@ -194,7 +190,7 @@ export class GameModeComponent implements AfterViewInit {
                 this.sounds[index].play();
                 this.canCheck = true;
             }
-        , 2000);
+        , 100);
     }
     canCheckCollision(){
         return this.canCheck;
