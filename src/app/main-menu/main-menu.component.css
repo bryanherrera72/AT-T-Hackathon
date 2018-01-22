@@ -1,10 +1,27 @@
 .menuContainer {
     text-align:center;
     
-}
-
-.title {
-    margin: 0px 0px 30px 0px;
-}
-
-
+ }
+ 
+ .menuItem {
+    font-size: 22px;
+    margin-bottom: 10px;
+ }
+ 
+ .img-responsive {
+    margin-top: 0%;
+    width: 100%;
+ }
+ 
+ 
+ /*.containerCustom {*/
+    /*background: url("../../assets/background_main/MainPage.png") no-repeat center;*/
+    /*height: 1000px;*/
+    /*width: 100%;*/
+    /*background-size: cover;*/
+ /*}*/
+ 
+ 
+ ul {
+    margin-top: -20%;
+ }

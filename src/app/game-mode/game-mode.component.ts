@@ -41,13 +41,18 @@ export class GameModeComponent implements AfterViewInit {
     lowerRBoxBound:Point[];
     
     bounds:any[];
-    
     cdnEndpoint = 'http://d33k0w5tn3c49w.cloudfront.net/'
     hitBoxImage = 'http://www.freeiconspng.com/uploads/circle-png-7.png';
     hitBoxImages = ['CircleTeal.png', 'CircleRed.png', 'CircleGreen.png']
+    endpoint0 = this.cdnEndpoint + this.hitBoxImages[0];
+    endpoint1 = this.cdnEndpoint + this.hitBoxImages[0];
+    endpoint2 = this.cdnEndpoint + this.hitBoxImages[0];
+    endpoint3 = this.cdnEndpoint + this.hitBoxImages[0];
+    boxHit = new Subject();
     
     canCheck: boolean = true;
     sounds:Howl[];
+    song:Howl;
     @ViewChild('myVideo') hardwareVideo;
 
     collisionDetection = new Subject();
@@ -99,10 +104,12 @@ export class GameModeComponent implements AfterViewInit {
     }
 
     ngOnInit(){
-        this.sounds = [new Howl({src:'../../assets/audio/Famoush.wav'}), 
-                      new Howl({src:'../../assets/audio/Hiagogo.wav'}),
-                      new Howl({src:'../../assets/audio/LowMedHit.wav'}),
-                      new Howl({src:'../../assets/audio/LowHit.wav'})];
+        this.sounds = [new Howl({src:'../../assets/audio/how_bout_dat_g.wav'}), 
+                      new Howl({src:'../../assets/audio/i_do_remember_a.wav'}),
+                      new Howl({src:'../../assets/audio/i_do_remember_b.wav'}),
+                      new Howl({src:'../../assets/audio/organic.wav'})];
+
+        this.song = new Howl({src:'../../assets/audio/hip_hop.mp3'});
         
         this.upperLBoxBound = [new Point(this.upperLeftBox.nativeElement.x, this.upperLeftBox.nativeElement.y),
             new Point((this.upperLeftBox.nativeElement.x + this.upperLeftBox.nativeElement.width), this.upperLeftBox.nativeElement.y),
@@ -170,12 +177,11 @@ export class GameModeComponent implements AfterViewInit {
     //takes a param point, checks if param is inside any box.
     checkIfCollision(point:Point){
         if(!(this.bounds == null)){
-            console.log("input: " + point.y);
-            console.log("value: " + this.bounds[0][0].y)
             
             for(let i = 0; i < this.bounds.length; i++){
-                if(point.x > this.bounds[i][0].x && point.x < this.bounds[i][1].x && point.y < this.bounds[i][2].y && point.y > this.bounds[i][0].y){
+                if(point.x+150 > this.bounds[i][0].x && point.x+50 < this.bounds[i][1].x && point.y - 200 < this.bounds[i][2].y && point.y - 200 > this.bounds[i][0].y){
                     this.playSound(i);
+                    this.boxHit.next(i);
                 }
                 
                 }
@@ -184,6 +190,28 @@ export class GameModeComponent implements AfterViewInit {
     }
 
     playSound(index: number){
+        this.boxHit.subscribe(
+            (data) => {
+                switch(data) {
+                    case 0:
+                    this.endpoint0 = this.cdnEndpoint + this.hitBoxImages[1];
+                    break;
+                    case 1:
+                    
+                    this.endpoint1 = this.cdnEndpoint + this.hitBoxImages[1]; 
+                    break;
+                    case 2:
+                    this.endpoint2 = this.cdnEndpoint + this.hitBoxImages[1];
+                    break;
+                    case 3: 
+                    this.endpoint3 = this.cdnEndpoint + this.hitBoxImages[1];
+                    break;
+                    default: 
+                    break;
+                }
+                console.log(data);
+            }
+        );
         this.canCheck = false;
         const id = setTimeout(
             ()=>{
@@ -191,9 +219,26 @@ export class GameModeComponent implements AfterViewInit {
                 this.canCheck = true;
             }
         , 100);
+        setTimeout( () => {
+            this.endpoint0 = this.cdnEndpoint + this.hitBoxImages[0];
+
+            this.endpoint1 = this.endpoint0 = this.cdnEndpoint + this.hitBoxImages[0];
+
+            this.endpoint2 = this.endpoint0 = this.cdnEndpoint + this.hitBoxImages[0];
+
+            this.endpoint3 = this.endpoint0 = this.cdnEndpoint + this.hitBoxImages[0];
+        }, 100); 
     }
+
     canCheckCollision(){
         return this.canCheck;
+    }
+
+    playSong(){
+        this.song.play();
+    }
+    pauseSong(){
+        this.song.pause();
     }
     // Side as in left or right side. Region as in upper left, lower right.
     generateFallingObject() {

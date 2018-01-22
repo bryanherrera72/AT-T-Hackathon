@@ -1,21 +1,22 @@
 <video #myVideo id="myVideo" width="100%" height="90%" preload autoplay loop muted></video>
 <div class="row">
     <div class="col-md-6 hit-box-upper">
-        <img #upperLeft class="img img-responsive hit-box-left-upper hit-box" src="{{ cdnEndpoint + hitBoxImages[0] }}">
+        <img #upperLeft class="img img-responsive hit-box-left-upper hit-box" [src]="endpoint0">
     </div>
     <div class="col-md-6 hit-box-upper">
-        <img #upperRight class="img img-responsive hit-box-right-upper hit-box" src="{{ cdnEndpoint + hitBoxImages[0] }}">
+        <img #upperRight class="img img-responsive hit-box-right-upper hit-box" [src]="endpoint1">
     </div>
 </div>
 <div class="row hit-box-container-lower">
     <div class="col-md-6 hit-box-lower">
-        <img #lowerLeft class="img img-responsive hit-box-left-lower hit-box" src="{{ cdnEndpoint + hitBoxImages[0] }}">
+        <img #lowerLeft class="img img-responsive hit-box-left-lower hit-box" [src]="endpoint2">
     </div>
     <div class="col-md-6 hit-box-lower">
-        <img #lowerRight  class="img img-responsive hit-box-right-lower hit-box" src="{{ cdnEndpoint + hitBoxImages[0] }}">
+        <img #lowerRight  class="img img-responsive hit-box-right-lower hit-box" [src]="endpoint3">
     </div>
 </div>
-<button class = "btn btn-success">Play</button>
+<button class = "btn btn-success" (click) = "playSong()">Play</button>
+<button class = "btn btn-success" (click) = "pauseSong()">Pause</button>
 <button class = "btn btn-primary" (click) = "playSoundZero()">Sound 0</button>
 <button class = "btn btn-primary" (click) = "playSoundOne()">Sound 1</button>
 <button class = "btn btn-primary" (click) = "playSoundTwo()">Sound 2</button>
